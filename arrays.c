@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+п»ї#define _CRT_SECURE_NO_WARNINGS
 #include "array.h"
 #include <stdlib.h>
 #include <string.h>
@@ -6,11 +6,11 @@
 
 const char* get_design_type_name(DesignType type) {
     switch (type) {
-    case DESIGN_2D: return "2D дизайн";
-    case DESIGN_3D: return "3D дизайн";
-    case DESIGN_UI: return "UI дизайн";
-    case DESIGN_UX: return "UX дизайн";
-    default: return "Неизвестно";
+    case DESIGN_2D: return "2D РґРёР·Р°Р№РЅ";
+    case DESIGN_3D: return "3D РґРёР·Р°Р№РЅ";
+    case DESIGN_UI: return "UI РґРёР·Р°Р№РЅ";
+    case DESIGN_UX: return "UX РґРёР·Р°Р№РЅ";
+    default: return "РќРµРёР·РІРµСЃС‚РЅРѕ";
     }
 }
 
@@ -21,7 +21,7 @@ const char* get_format_name(Format format) {
     case FORMAT_SVG: return "SVG";
     case FORMAT_PDF: return "PDF";
     case FORMAT_PSD: return "PSD";
-    default: return "Неизвестно";
+    default: return "РќРµРёР·РІРµСЃС‚РЅРѕ";
     }
 }
 
@@ -31,7 +31,7 @@ const char* get_requirement_name(Platform req) {
     case REQ_WIN11: return "Windows 11";
     case REQ_MACOS12: return "macOS 12";
     case REQ_LINUX_UBUNTU20: return "Linux Ubuntu 20";
-    default: return "Неизвестно";
+    default: return "РќРµРёР·РІРµСЃС‚РЅРѕ";
     }
 }
 
@@ -40,24 +40,24 @@ int output_software(const Software* data, int count) {
     SetConsoleOutputCP(1251);
 
     if (count == 0) {
-        puts("База пуста!");
+        puts("Р‘Р°Р·Р° РїСѓСЃС‚Р°!");
         return 0;
     }
 
     for (int i = 0; i < count; i++) {
-        printf("\nЗапись %d:\n", i + 1);
-        printf("Название: %s\n", data[i].name);
-        printf("Тип дизайна: %s\n", get_design_type_name(data[i].design_type));
-        printf("Разработчик: %s\n", data[i].developer);
-        printf("Форматы: ");
+        printf("\nР—Р°РїРёСЃСЊ %d:\n", i + 1);
+        printf("РќР°Р·РІР°РЅРёРµ: %s\n", data[i].name);
+        printf("РўРёРї РґРёР·Р°Р№РЅР°: %s\n", get_design_type_name(data[i].design_type));
+        printf("Р Р°Р·СЂР°Р±РѕС‚С‡РёРє: %s\n", data[i].developer);
+        printf("Р¤РѕСЂРјР°С‚С‹: ");
         for (int j = 0; j < 5; j++) {
             printf("%s", get_format_name(data[i].formats[j]));
             if (j < 4) printf(", ");
         }
-        printf("\nЦена: %.2f\n", data[i].price);
-        printf("Сайт: %s\n", data[i].website);
+        printf("\nР¦РµРЅР°: %.2f\n", data[i].price);
+        printf("РЎР°Р№С‚: %s\n", data[i].website);
         printf("API: %d\n", data[i].api_version);
-        printf("Требования: ");
+        printf("РўСЂРµР±РѕРІР°РЅРёСЏ: ");
         for (int j = 0; j < 3; j++) {
             printf("%s", get_requirement_name(data[i].requirements[j]));
             if (j < 2) printf(", ");
@@ -72,33 +72,33 @@ int input_software(Software* data) {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
-    puts("Введите название ПО:");
+    puts("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РџРћ:");
     fgets(data->name, sizeof(data->name), stdin);
     data->name[strcspn(data->name, "\n")] = 0;
 
-    puts("Введите тип дизайна (0-2D, 1-3D, 2-UI, 3-UX):");
+    puts("Р’РІРµРґРёС‚Рµ С‚РёРї РґРёР·Р°Р№РЅР° (0-2D, 1-3D, 2-UI, 3-UX):");
     int design_type;
     scanf("%d", &design_type);
     data->design_type = (DesignType)design_type;
     getchar();
 
-    puts("Введите разработчика:");
+    puts("Р’РІРµРґРёС‚Рµ СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°:");
     fgets(data->developer, sizeof(data->developer), stdin);
     data->developer[strcspn(data->developer, "\n")] = 0;
 
-    puts("Введите цену:");
+    puts("Р’РІРµРґРёС‚Рµ С†РµРЅСѓ:");
     scanf("%f", &data->price);
     getchar();
 
-    puts("Введите веб-сайт:");
+    puts("Р’РІРµРґРёС‚Рµ РІРµР±-СЃР°Р№С‚:");
     fgets(data->website, sizeof(data->website), stdin);
     data->website[strcspn(data->website, "\n")] = 0;
 
-    puts("Введите версию API:");
+    puts("Р’РІРµРґРёС‚Рµ РІРµСЂСЃРёСЋ API:");
     scanf("%d", &data->api_version);
     getchar();
 
-    puts("Введите форматы (5 чисел 0-4):");
+    puts("Р’РІРµРґРёС‚Рµ С„РѕСЂРјР°С‚С‹ (5 С‡РёСЃРµР» 0-4):");
     for (int j = 0; j < 5; j++) {
         int format;
         scanf("%d", &format);
@@ -106,7 +106,7 @@ int input_software(Software* data) {
     }
     getchar();
 
-    puts("Введите требования (3 числа 0-3):");
+    puts("Р’РІРµРґРёС‚Рµ С‚СЂРµР±РѕРІР°РЅРёСЏ (3 С‡РёСЃР»Р° 0-3):");
     for (int j = 0; j < 3; j++) {
         int req;
         scanf("%d", &req);
@@ -146,7 +146,7 @@ void generate_test(Software* data, int size) {
 int save_to_file(Software* data, int count, const char* filename) {
     FILE* f = fopen(filename, "w");
     if (!f) {
-        printf("Ошибка файла %s\n", filename);
+        printf("РћС€РёР±РєР° С„Р°Р№Р»Р° %s\n", filename);
         return 0;
     }
     fprintf(f, "%d\n", count);
@@ -160,14 +160,14 @@ int save_to_file(Software* data, int count, const char* filename) {
         fprintf(f, "\n");
     }
     fclose(f);
-    printf("Сохранено в %s\n", filename);
+    printf("РЎРѕС…СЂР°РЅРµРЅРѕ РІ %s\n", filename);
     return 1;
 }
 
-int load_from_file(Software** data, int* count, const char* filename) { // ИЗМЕНИЛА
+int load_from_file(Software** data, int* count, const char* filename) { // РР—РњР•РќРР›Рђ
     FILE* f = fopen(filename, "r");
     if (!f) {
-        printf("Файл %s не найден\n", filename);
+        printf("Р¤Р°Р№Р» %s РЅРµ РЅР°Р№РґРµРЅ\n", filename);
         return 0;
     }
 
@@ -218,7 +218,7 @@ Software* add_software(Software* data, int* count) {
     Software* new_data = realloc(data, *count * sizeof(Software));
     if (!new_data) {
         (*count)--;
-        printf("Ошибка realloc!\n");
+        printf("РћС€РёР±РєР° realloc!\n");
         return data;
     }
     data = new_data;
@@ -230,7 +230,7 @@ Software* add_software(Software* data, int* count) {
 
 int search_by_design(Software* data, int count) {
     int type;
-    printf("Тип дизайна (0-3): ");
+    printf("РўРёРї РґРёР·Р°Р№РЅР° (0-3): ");
     scanf("%d", &type);
     getchar();
 
@@ -241,16 +241,16 @@ int search_by_design(Software* data, int count) {
             found++;
         }
     }
-    printf("Найдено: %d\n", found);
+    printf("РќР°Р№РґРµРЅРѕ: %d\n", found);
     return found;
 }
 
 int search_by_price_and_format(Software* data, int count) {
     float price;
     int fmt;
-    printf("Макс цена: ");
+    printf("РњР°РєСЃ С†РµРЅР°: ");
     scanf("%f", &price);
-    printf("Формат (0-4): ");
+    printf("Р¤РѕСЂРјР°С‚ (0-4): ");
     scanf("%d", &fmt);
     getchar();
 
@@ -266,7 +266,7 @@ int search_by_price_and_format(Software* data, int count) {
             }
         }
     }
-    printf("Найдено: %d\n", found);
+    printf("РќР°Р№РґРµРЅРѕ: %d\n", found);
     return found;
 }
 
